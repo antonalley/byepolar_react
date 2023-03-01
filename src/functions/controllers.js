@@ -60,7 +60,7 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
                 agreeing_queue: arrayUnion(uid)
             })
             return new Promise((resolve, reject) => {
-                var stopSnapshot = onSnapshot(q, (snapshot) => {
+                var stopSnapshot = onSnapshot(q, async (snapshot) => {
                     let aq = snapshot.get("agreeing_queue")
                     let oq = snapshot.get("opposing_queue")
                     console.log("Got Snapshot", oq)
@@ -69,7 +69,7 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
                         // create new discussion, remove self and opposing from queues, resolve()
                         let uid_opposing = oq[0];
                         let new_discussion_id = uuidv4()
-                        setDoc(doc(db, "Discussions", new_discussion_id), {
+                        await setDoc(doc(db, "Discussions", new_discussion_id), {
                             agreeing: uid,
                             opposing: uid_opposing,
                             audience_rating: 0,
@@ -79,7 +79,13 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
                             status: "missing_1",
                             topic: "",
                         })
-                        updateDoc(q, {
+                        // await setDoc(doc(db, "Discussions", new_discussion_id, "call_info", "1"), {})
+                        // await setDoc(doc(db, "Discussions", new_discussion_id, "answer_info", "1"), {})
+                        await setDoc(doc(db, "Discussions", new_discussion_id, "collections", "offer"), {})
+                        await setDoc(doc(db, "Discussions", new_discussion_id, "collections", "answer"), {})
+                        await setDoc(doc(db, "Discussions", new_discussion_id, "collections", "callerIce"), {data:[]})
+                        await setDoc(doc(db, "Discussions", new_discussion_id, "collections", "answerIce"), {data:[]})
+                        await updateDoc(q, {
                             agreeing_queue: arrayRemove(uid),
                             opposing_queue: arrayRemove(uid_opposing),
                         })
