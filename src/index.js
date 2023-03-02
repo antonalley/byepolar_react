@@ -12,19 +12,25 @@ import Auth from './pages/auth/index'
 import NotFound from './pages/404';
 import Ongoing from './pages/ongoing';
 import Stream from './pages/stream/index'
+import Navbar from './components/navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route exact path='/' component={Home}></Route>
-        <Route path='/auth/' component={Auth}></Route>
-        <Route path='/ongoing' component={Ongoing}></Route>
-        <Route path='/stream/' component={Stream}></Route>
-        <Route component={NotFound}></Route>
-      </Switch>
-    </Router>
+    <div id="screen">
+      <Navbar />
+      <div className="main-content">
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Home}></Route>
+            <Route path='/auth/' component={Auth}></Route>
+            <Route path='/ongoing' component={Ongoing}></Route>
+            <Route path='/stream/' component={Stream}></Route>
+            <Route component={NotFound}></Route>
+          </Switch>
+        </Router>
+      </div>
+    </div>
   </React.StrictMode>
   
 );

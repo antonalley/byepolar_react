@@ -5,6 +5,6 @@ import { firebaseConfig } from "./fb_config";
 
 
 export const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+export const auth = getAuth(app)
 setPersistence(auth, browserLocalPersistence)
 export const db = getFirestore(app)

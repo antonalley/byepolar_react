@@ -7,4 +7,10 @@ body {
 
 .main-content {
     margin-top: 120px;
+    overflow: hidden;
 }
+
+/* #screen {
+    display: flex;
+    flex-direction: column;
+} */

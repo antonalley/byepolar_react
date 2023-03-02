@@ -44,8 +44,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <Navbar user={user}/>
-      <div id={styles.body_container} className="main-content">
+      <div id={styles.body_container}>
         <div id={styles.main_body}> 
             <div id={styles.top_section}>
                 <div id={styles.main_text}>

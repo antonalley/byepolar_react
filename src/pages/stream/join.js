@@ -41,7 +41,6 @@ const Join = () => {
     }
     return ( 
         <div>
-            <Navbar />
             <div className="main-content">
                 Choose side of the argument to join
                 <button onClick={e => {e.preventDefault();chooseSide('agreeing')}}>Agreeing</button>

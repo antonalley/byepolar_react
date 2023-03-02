@@ -1,6 +1,6 @@
 import { db } from './fb_init';
 // import { getDocs, where, query, limit, orderBy, updateDoc, arrayUnion, collection, doc as doclite } from 'firebase/firestore/lite';
-import {getDocs, setDoc, where, query, limit, orderBy, updateDoc, arrayUnion, collection, Timestamp, arrayRemove} from 'firebase/firestore'
+import {getDocs, getDoc, setDoc, where, query, limit, orderBy, updateDoc, arrayUnion, collection, Timestamp, arrayRemove} from 'firebase/firestore'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { uuidv4 } from '@firebase/util';
 export async function getCurrentPrompts() {
@@ -118,4 +118,12 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
     }
 }
 
+/**
+ * Get the information about a user from their id
+ * @param {string} user_id 
+ */
+export async function getUserInfo(user_id){
+    let user_doc = await getDoc(doc(db, "Users", user_id))
 
+    return user_doc.data()
+}

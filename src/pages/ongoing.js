@@ -18,8 +18,7 @@ export default function Ongoing() {
     }, [])
     return (
         <div>
-            <Navbar />
-            <div id={styles.body_container} className='main-content'>
+            <div id={styles.body_container}>
                 {prompts.length > 0 ? prompts.map((prompt, i) => {
                     return (
                         <div className={styles.prompt_column}>
