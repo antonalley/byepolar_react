@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import Navbar from '../components/navbar'
-import { getCurrentDiscussions, getCurrentPrompts, getFeaturedDiscussion } from '../functions/controllers'
+import { getCurrentDiscussions, getCurrentPrompts, getFeaturedDiscussion, getUserInfo } from '../functions/controllers'
 import { useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { app } from '../functions/fb_init'
@@ -15,7 +15,6 @@ export default function Home(props) {
   let auth = getAuth(app)
   onAuthStateChanged(auth, (user) => {
     if (user){
-      console.log("USER", user.uid)
       setUser(user)
     } else {
       if (process.browser){
@@ -35,7 +34,13 @@ export default function Home(props) {
       let current_prompts = await getCurrentPrompts();
       setPrompts(current_prompts)
       let got_featured = await getFeaturedDiscussion();
-      setFeatured(got_featured);
+      let agreeing_user_featured = await getUserInfo(got_featured.agreeing)
+      let opposing_user_featured = await getUserInfo(got_featured.opposing)
+      setFeatured({
+        agreeing: `${agreeing_user_featured.first_name} ${agreeing_user_featured.last_name}`, 
+        opposing: `${opposing_user_featured.first_name} ${opposing_user_featured.last_name}`,
+        num_viewers: got_featured.num_viewers,
+      });
     }
     fetchData();
   }, [])

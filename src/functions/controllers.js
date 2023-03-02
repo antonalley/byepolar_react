@@ -127,3 +127,14 @@ export async function getUserInfo(user_id){
 
     return user_doc.data()
 }
+
+/**
+ * Set the Initial user info
+ */
+export async function setUserInfo(user_id, first_name, last_name){
+    await setDoc(doc(db, "Users", user_id), {
+        first_name: first_name,
+        last_name: last_name,
+    })
+    return true;
+}
