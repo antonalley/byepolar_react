@@ -10,7 +10,6 @@ export default function Home(props) {
   const [user, setUser] = useState(null);
   const [prompts, setPrompts] = useState([]);
   const [featured, setFeatured] = useState(null);
-  const [chooseSideOn, setChooseSideOn] = useState(false);
   // Check Auth
   let auth = getAuth(app)
   onAuthStateChanged(auth, (user) => {
@@ -48,33 +47,37 @@ export default function Home(props) {
 
 
   return (
-    <div>
       <div id={styles.body_container}>
         <div id={styles.main_body}> 
             <div id={styles.top_section}>
                 <div id={styles.main_text}>
-                    Watch Discussions Live Now
+                    Watch or Join Live Discussions Now
                 </div>
-                {featured ? 
+    
                 <div id={styles.featured_discussion}>
+                {featured && 
+                  <>
                   <span>{featured.agreeing} vs {featured.opposing}</span>
                   <span>{featured.num_viewers} watching</span>
                   <button className={`${styles.watch_live_button} btn btn-outline-primary`}>Watch Live</button>
+                  </>
+                }
                 </div> 
                 
-                : <></>}
             </div>   
             <div id={styles.featured_container}>
-                <h3>Featured Discussions of the week</h3>
+                {/* <h3>Featured Discussions of the week</h3> */}
                 <div id={styles.topics_list} className={styles.side_list}>
                   {prompts.map(prompt => {
                     return (
                       <div id={`topic-${prompt.id}`} className={styles.side_list_item}>
-                        <h3>{prompt.prompt}</h3>
+                        <span className={styles.promptName}>{prompt.prompt}</span>
+                        &nbsp;
                         <div>
                           <a href="/ongoing">
                             <button className='btn btn-outline-primary'>Watch Live with {prompt.total_viewers} others</button>
                           </a>
+                          &nbsp;
                           <a href={`/stream/join/?prompt_id=${prompt.id}`}>
                             <button className='btn btn-outline-primary'>Join the Discussion</button>
                           </a>
@@ -86,6 +89,5 @@ export default function Home(props) {
             </div>
         </div>
       </div>
-    </div>
   )
 }

@@ -2,7 +2,7 @@ import Navbar from '../components/navbar'
 import styles from '../styles/Ongoing.module.css'
 import { useEffect, useState } from 'react';
 import { getCurrentDiscussions, getCurrentPrompts } from '../functions/controllers';
-
+import { getUserInfo } from '../functions/controllers';
 export default function Ongoing() {
     const [prompts, setPrompts] = useState([]);
     const [discussions, setDiscussions] = useState([]);
