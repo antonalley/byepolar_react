@@ -25,6 +25,11 @@
   padding: 30px;
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
   margin: 10px;
+  transition: background-color 0.4s ease-in-out;
+}
+
+#top_section div:hover {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 #main_text {
@@ -83,12 +88,16 @@
     /* min-width: 400px; */
     width: 33%;
     height: 90%;
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(0, 0, 0, 0.15);
     border-radius: 8px;
     padding: 10px;
     margin: 20px;
     text-align: center;
-    
+    transition: background-color 0.4s ease-in-out;
+}
+
+.side_list_item:hover {
+  background-color: rgb(0, 0, 0, 0.25);
 }
 
 .new_topic div {

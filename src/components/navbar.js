@@ -16,7 +16,7 @@ const Navbar = () => {
     return ( 
             <div id={styles.heading_container}>
                 <div id={styles.heading}>
-                    <div id={styles.logos} onClick={(e)=>{window.location.replace("/h")}}>
+                    <div id={styles.logos}>
                         <a href="/" aria-label="Home">
                             <img src="/bear.png" width="70px" height="80px" />
                             <img src="/bye-polar-logo.png" width="140px" />
