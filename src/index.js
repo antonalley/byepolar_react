@@ -13,10 +13,12 @@ import NotFound from './pages/404';
 import Ongoing from './pages/ongoing';
 import Stream from './pages/stream/index'
 import Navbar from './components/navbar';
+import { AppContextProvider } from './hooks/context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AppContextProvider>
     <div id="screen">
       <Navbar />
       <div className="main-content">
@@ -31,6 +33,7 @@ root.render(
         </Router>
       </div>
     </div>
+    </AppContextProvider>
   </React.StrictMode>
   
 );

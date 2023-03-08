@@ -1,14 +1,14 @@
 import styles from '../../styles/Auth.module.css'
-import { auth } from '../../functions/fb_init';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { setUserInfo } from '../../functions/controllers';
+import { AppContext } from '../../hooks/context';
 
 
 const Register = () => {
     const [failed, setFailed] = useState(false);
     const [uid, setUid] = useState(null);
-
+    const { auth } = useContext(AppContext);
 
     function registerUser(e){
         e.preventDefault()

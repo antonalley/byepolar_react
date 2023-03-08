@@ -26,6 +26,7 @@
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
   margin: 10px;
   transition: background-color 0.4s ease-in-out;
+  border-radius: 8px;
 }
 
 #top_section div:hover {

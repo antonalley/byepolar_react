@@ -1,11 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { doc, updateDoc, onSnapshot, arrayUnion } from 'firebase/firestore';
-import { db } from '../../functions/fb_init';
+import { AppContext } from "../../hooks/context";
+import styles from "../../styles/Participant.module.css"
 
 const Participant = () => {
     const queryParams = new URLSearchParams(window.location.search)
     const [DISCUSSION_ID, _] = useState(queryParams.get('discussion_id'))
     const [SIDE, __] = useState(queryParams.get('side'))
+    const { db } = useContext(AppContext);
 
     const localVideoRef = useRef(null);
     const remoteVideoRef = useRef(null);
@@ -145,17 +147,21 @@ const Participant = () => {
     }
 }
     return ( 
-        <div>
+        <>
             <button onClick={()=>setupStream()}>Start Session</button>
-            <h1>My Video</h1>
-            <video id="local-video" ref={localVideoRef} muted autoPlay></video>
-
+            <div id={styles.videos_container}>
+                <div id={styles.video_left_container}>
+                    <video id="local-video" ref={localVideoRef} muted autoPlay></video>
+                    <h6 className={styles.video_caption}>Your Video</h6>
+                </div>
+                <div id={styles.video_right_container}>
+                    <video id="remote-video" ref={remoteVideoRef} autoPlay></video>
+                    <h6 className={styles.video_caption}>Their Video</h6>
+                </div>
+            </div>
             
-            <h1>Their Video</h1>
-            <video id="remote-video" ref={remoteVideoRef} autoPlay></video>
-            
 
-        </div>
+        </>
      );
 }
  

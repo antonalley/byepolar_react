@@ -1,32 +1,13 @@
 import styles from '../styles/Home.module.css'
-import Navbar from '../components/navbar'
-import { getCurrentDiscussions, getCurrentPrompts, getFeaturedDiscussion, getUserInfo } from '../functions/controllers'
-import { useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { app } from '../functions/fb_init'
+import { getCurrentPrompts, getFeaturedDiscussion, getUserInfo } from '../functions/controllers'
+import { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../hooks/context'
 
 
-export default function Home(props) {
-  const [user, setUser] = useState(null);
+export default function Home() {
+  const { userDetail } = useContext(AppContext);
   const [prompts, setPrompts] = useState([]);
   const [featured, setFeatured] = useState(null);
-  // Check Auth
-  let auth = getAuth(app)
-  onAuthStateChanged(auth, (user) => {
-    if (user){
-      setUser(user)
-    } else {
-      if (process.browser){
-        console.log("User is signed out")
-        try {
-          window.location = "/auth/login"
-        } catch {
-          {}
-        }
-      }
-      
-    }
-  })
 
   useEffect(() => {
     async function fetchData(){
@@ -41,8 +22,10 @@ export default function Home(props) {
         num_viewers: got_featured.num_viewers,
       });
     }
-    fetchData();
-  }, [])
+    if (userDetail){
+      fetchData();
+    }
+  }, [userDetail])
 
 
 

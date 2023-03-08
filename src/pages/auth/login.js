@@ -1,14 +1,12 @@
-import {  } from './index';
-import {  } from './index';
 import { getAuth, EmailAuthProvider, FacebookAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../functions/fb_init';
 // import firebaseui from "firebaseui"
-import { useCallback, useEffect, useState } from "react";
-import { app } from '../../functions/fb_init'
+import { useCallback, useContext, useEffect, useState } from "react";
 import styles from '../../styles/Auth.module.css'
+import { AppContext } from '../../hooks/context';
 
 const Login = () => {
     const [failed, setFailed] = useState(false);
+    const { auth } = useContext(AppContext);
 
     function handleLogin(e){
         e.preventDefault()

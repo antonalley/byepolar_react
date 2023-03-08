@@ -1,9 +1,10 @@
 import { db } from './fb_init';
-// import { getDocs, where, query, limit, orderBy, updateDoc, arrayUnion, collection, doc as doclite } from 'firebase/firestore/lite';
 import {getDocs, getDoc, setDoc, where, query, limit, orderBy, updateDoc, arrayUnion, collection, Timestamp, arrayRemove} from 'firebase/firestore'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { uuidv4 } from '@firebase/util';
+
 export async function getCurrentPrompts() {
+    
     var prompts = [];
     try{
         let prompt_col = collection(db, 'Prompts')
@@ -52,6 +53,9 @@ export async function getFeaturedDiscussion() {
  * @returns a promise when there is a match that will return a discussion id
  */
 export async function joinDiscussionQueue(prompt_id, position, uid) {
+    if (prompt_id === null | position === null | uid === null){
+        throw Error("Missing a paramater")
+    }
     try {
         let q = doc(db, "Prompts", prompt_id)
 
@@ -114,6 +118,7 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
         
     } catch(error) {
         console.log("Error Joining the Discussion queue", error)
+        throw error;
         return null;
     }
 }
@@ -121,11 +126,12 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
 /**
  * Get the information about a user from their id
  * @param {string} user_id 
+ * @returns {object} {first_name: "", last_name: "", id: ""}
  */
 export async function getUserInfo(user_id){
     let user_doc = await getDoc(doc(db, "Users", user_id))
 
-    return user_doc.data()
+    return {...user_doc.data(), id:user_id}
 }
 
 /**
