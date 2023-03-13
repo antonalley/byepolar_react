@@ -1,5 +1,5 @@
 import { joinDiscussionQueue } from "../../functions/controllers";
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import styles from '../../styles/Join.module.css'
 import { AppContext } from "../../hooks/context";
 

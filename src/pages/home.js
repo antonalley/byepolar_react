@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import { getCurrentPrompts, getFeaturedDiscussion, getUserInfo } from '../functions/controllers'
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../hooks/context'
 
 

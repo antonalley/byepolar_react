@@ -1,6 +1,6 @@
 import { getAuth, EmailAuthProvider, FacebookAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
 // import firebaseui from "firebaseui"
-import { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styles from '../../styles/Auth.module.css'
 import { AppContext } from '../../hooks/context';
 

@@ -1,6 +1,6 @@
 import styles from '../../styles/Auth.module.css'
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { setUserInfo } from '../../functions/controllers';
 import { AppContext } from '../../hooks/context';
 

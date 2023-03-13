@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { getUserInfo } from "../functions/controllers"
 import styles from "../styles/Ongoing.module.css"
 
