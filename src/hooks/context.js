@@ -17,7 +17,7 @@ export function AppContextProvider({ children }){
                 let detail = await getUserInfo(user.uid)
                 setUserDetail(detail)
                 console.log("Set User Detail: ", detail)
-            }  else if (!window.location.href.includes("/auth/login")) {
+            }  else if (!window.location.href.includes("/auth")) {
                 window.location = "/auth/login"
             }
         })
