@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getUserInfo } from "../functions/controllers";
+import React from "react";
 import { auth, db, app } from "../functions/fb_init";
 import { onAuthStateChanged } from "firebase/auth";
 

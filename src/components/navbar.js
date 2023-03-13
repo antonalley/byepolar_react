@@ -1,5 +1,5 @@
 import styles from '../styles/Navbar.module.css'
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../hooks/context';
 
 const Navbar = () => {

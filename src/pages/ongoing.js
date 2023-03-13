@@ -1,5 +1,5 @@
 import styles from '../styles/Ongoing.module.css'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getCurrentDiscussions, getCurrentPrompts } from '../functions/controllers';
 import { DebatePreview } from '../components/ongoing_snippet';
 

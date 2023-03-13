@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { doc, updateDoc, onSnapshot, arrayUnion } from 'firebase/firestore';
 import { AppContext } from "../../hooks/context";
 import styles from "../../styles/Participant.module.css"
@@ -100,7 +100,7 @@ const Participant = () => {
     }
 
     else {
-        console.log("Answer Init")
+        console.log("Answer Init");
 
         pc.onicecandidate = (event) => {
             if(event.candidate) {
