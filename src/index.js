@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './styles/globals.css'
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
+  Routes
 } from "react-router-dom"; //runs react-router-dom v5.2.0, handles changes in url
 import 'bootstrap/dist/css/bootstrap.css'
 import Home from './pages/home';
@@ -19,20 +19,20 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AppContextProvider>
-    <div id="screen">
-      <Navbar />
-      <div className="main-content">
-        <Router>
-          <Switch>
-            <Route exact path='/' component={Home}></Route>
-            <Route path='/auth/' component={Auth}></Route>
-            <Route path='/ongoing' component={Ongoing}></Route>
-            <Route path='/stream/' component={Stream}></Route>
-            <Route component={NotFound}></Route>
-          </Switch>
-        </Router>
-      </div>
-    </div>
+      <Router>
+        <div id="screen">
+          <Navbar />
+          <div className="main-content">
+              <Routes>
+                <Route path="/" element={<Home/>}></Route>
+                <Route path='/auth/' element={<Auth/>}></Route>
+                <Route path='/ongoing' element={<Ongoing/>}></Route>
+                <Route path='/stream/' element={<Stream/>}></Route>
+                <Route element={<NotFound/>}></Route>
+              </Routes>
+          </div>
+        </div>
+      </Router>
     </AppContextProvider>
   </React.StrictMode>
   
