@@ -1,6 +1,6 @@
-import { getAuth, EmailAuthProvider, FacebookAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 // import firebaseui from "firebaseui"
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from '../../styles/Auth.module.css'
 import { AppContext } from '../../hooks/context';
 
@@ -16,7 +16,7 @@ const Login = () => {
             signInWithEmailAndPassword (auth, email, password)
             .then((userCredential) => {
                 // Signed in and subscribed
-                const user = userCredential.user;
+                // const user = userCredential.user;
                 window.location.href = "/";
             })
             .catch((error) => {
