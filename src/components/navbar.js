@@ -10,8 +10,8 @@ const Navbar = () => {
                 <div id={styles.heading}>
                     <div id={styles.logos}>
                         <a href="/" aria-label="Home">
-                            <img src="/bear.png" width="70px" height="80px" />
-                            <img src="/bye-polar-logo.png" width="140px" />
+                            <img alt="Polar Bear" src="/bear.png" width="70px" height="80px" />
+                            <img alt="Bye Polar Logo" src="/bye-polar-logo.png" width="140px" />
                         </a>
                     </div>
                     

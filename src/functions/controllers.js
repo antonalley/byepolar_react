@@ -59,7 +59,7 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
     try {
         let q = doc(db, "Prompts", prompt_id)
 
-        if (position=="agreeing"){
+        if (position === "agreeing"){
             await updateDoc(q, {
                 agreeing_queue: arrayUnion(uid)
             })
@@ -119,7 +119,6 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
     } catch(error) {
         console.log("Error Joining the Discussion queue", error)
         throw error;
-        return null;
     }
 }
 
