@@ -1,12 +1,12 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import { doc, updateDoc, onSnapshot, arrayUnion } from 'firebase/firestore';
 import { AppContext } from "../../hooks/context";
 import styles from "../../styles/Participant.module.css"
 
 const Participant = () => {
     const queryParams = new URLSearchParams(window.location.search)
-    const [DISCUSSION_ID, _] = useState(queryParams.get('discussion_id'))
-    const [SIDE, __] = useState(queryParams.get('side'))
+    const DISCUSSION_ID = queryParams.get('discussion_id')
+    const SIDE = queryParams.get('side')
     const { db } = useContext(AppContext);
 
     const localVideoRef = useRef(null);
@@ -78,7 +78,7 @@ const Participant = () => {
         }
 
         // listen for answer
-        var stopAnswerSnapshot = onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "answer"), async snapshot => {
+        onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "answer"), async snapshot => {
             const data = snapshot.data()
             if (data?.answer && pc.remoteDescription === null){
                 console.log('attempt to set remote description')
@@ -90,7 +90,7 @@ const Participant = () => {
         })
 
         // listen for ice candidates
-        var stopIceSnapshot = onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "answerIce"), snapshot => {
+        onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "answerIce"), snapshot => {
             snapshot.data().data.forEach((c) => {
                 const ic = new RTCIceCandidate(c)
                 pc.addIceCandidate(ic)
@@ -111,7 +111,7 @@ const Participant = () => {
         };
 
         // Listen for offer
-        var stopOfferSnapshot = onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "offer"), async snapshot => {
+        onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "offer"), async snapshot => {
             const data = snapshot.data()
             if (data?.offer && pc.remoteDescription === null){
                 console.log('Received offer')
@@ -135,7 +135,7 @@ const Participant = () => {
         })
 
         // Listen for ice candidates
-        var stopIceSnapshot = onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "callerIce"), snapshot => {
+        onSnapshot(doc(db, "Discussions", DISCUSSION_ID, "collections", "callerIce"), snapshot => {
             snapshot.data().data.forEach((c) => {
                 const ic = new RTCIceCandidate(c)
                 pc.addIceCandidate(ic)
