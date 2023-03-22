@@ -5,7 +5,7 @@ name: Deploy to Firebase Hosting on merge
 'on':
   push:
     branches:
-      - live
+      - Production
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -14,9 +14,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '18'
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
+      - name: Create .env with Github Secrets and run script
+        env:
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
           REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
           REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
@@ -24,9 +23,16 @@ jobs:
           REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
           REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
           REACT_APP_MEASUREMENT_ID: ${{ secrets.REACT_APP_MEASUREMENT_ID }}
-
-      - run: npm ci
-      - run: npm run build
+        run: |
+          touch .env
+          echo REACT_APP_API_KEY=$REACT_APP_API_KEY >> .env
+          echo REACT_APP_AUTH_DOMAIN=$REACT_APP_AUTH_DOMAIN >> .env
+          echo REACT_APP_PROJECT_ID=$REACT_APP_PROJECT_ID >> .env
+          echo REACT_APP_STORAGE_BUCKET=$REACT_APP_STORAGE_BUCKET >> .env
+          echo REACT_APP_MESSAGING_SENDER_ID=$REACT_APP_MESSAGING_SENDER_ID >> .env
+          echo REACT_APP_APP_ID=$REACT_APP_APP_ID >> .env
+          echo REACT_APP_MEASUREMENT_ID=$REACT_APP_MEASUREMENT_ID >> .env
+          npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
