@@ -13,6 +13,7 @@ const Navbar = () => {
                             <img alt="Polar Bear" src="/bear.png" width="70px" height="80px" />
                             <img alt="Bye Polar Logo" src="/bye-polar-logo.png" width="140px" />
                         </a>
+                        <strong><em>Beta</em></strong>
                     </div>
                     
                     <div id={styles.profile_link}>
