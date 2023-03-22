@@ -103,7 +103,7 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
             await updateDoc(q, {
                 opposing_queue: arrayUnion(uid)
             })
-            let discussions = query(collection(db, "Discussions"), where("opposing", "==", uid))
+            let discussions = query(collection(db, "Discussions"), where("opposing", "==", uid), where("status", "==", "missing_1"))
             return new Promise((resolve, reject) => {
                 onSnapshot(discussions, (snapshot) => {
                     snapshot.docChanges().forEach((change) => {
@@ -120,6 +120,30 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
         console.log("Error Joining the Discussion queue", error)
         throw error;
     }
+}
+
+/**
+ * Starts the discussion, by marking the discussion as live in the db
+ * @param {int} discussion_id 
+ */
+export async function startDiscussion(discussion_id){
+    let q = doc(db, "Discussions", discussion_id)
+    await updateDoc(q, {
+        status: "live"
+    })
+    return true;
+}
+
+/**
+ * Ends discussion, by marking the discussion as ended in the db
+ * @param {int} discussion_id 
+ */
+export async function endDiscussion(discussion_id){
+    let q = doc(db, "Discussions", discussion_id)
+    await updateDoc(q, {
+        status: "ended"
+    })
+    return true;
 }
 
 /**

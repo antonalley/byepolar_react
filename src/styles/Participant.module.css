@@ -6,7 +6,7 @@
     margin-right: 30px;
 }
 
-#videos_container div {
+#videos_container div.video {
     flex:1;
     border-radius: 3px;
     margin: 2rem;
