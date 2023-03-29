@@ -58,8 +58,9 @@ const Login = () => {
                     <label htmlFor="userPassword" className="form-label">Password</label>
                     <input type="password" className="form-control" id="userPassword" />
                 </div>
-                {failed && <span>Failed to Sign up, try again</span>}
+                
                 <button type="submit" className="btn btn-primary">Submit</button>
+                {failed && <div className={styles.failed}>Failed Login, try again</div>}
                 </form>
                 &nbsp;
                 <a href="/auth/register">Create an account</a>

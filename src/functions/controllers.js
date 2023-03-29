@@ -23,7 +23,7 @@ export async function getCurrentDiscussions(prompts) {
     try{
         let dis_col = collection(db, 'Discussions')
         for (const prompt of prompt_ids) {
-            let discussions_snapshot = await getDocs(query(dis_col, where("prompt", "==", prompt)))
+            let discussions_snapshot = await getDocs(query(dis_col, where("prompt", "==", prompt), where("status", "==", "live")))
             discussions.push(discussions_snapshot.docs.map(doc => Object.assign(doc.data(), {url:`discussion-${doc.id}`})))
         };       
     } catch(error) {
