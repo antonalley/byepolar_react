@@ -14,8 +14,10 @@ import Navbar from './components/navbar';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import Join from './pages/stream/join';
+import { VideoCall } from './pages/stream/participant_j';
 import Participant from './pages/stream/participant';
 import { AppContextProvider } from './hooks/context';
+import Watch from './pages/stream/watch';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,6 +37,8 @@ root.render(
               <Route path='/stream' >
                 <Route path='join' element={<Join />}></Route>
                 <Route path='participant' element={<Participant />}></Route>
+                <Route path='participant_beta' element={<VideoCall />} />
+                <Route path='watch' element={<Watch />} />
                 <Route path = "" element={<NotFound/>}></Route>
               </Route>
               <Route element={<NotFound/>}></Route>
