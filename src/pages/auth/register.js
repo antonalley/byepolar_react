@@ -82,6 +82,16 @@ const Register = () => {
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
                     </>}
+                     
+                     
+                     
+            <div><p style={{maxWidth:'400px'}}><strong>DISCLAIMER</strong>
+                By signing and making an account you are agreeing to participate in an early Alpha of the product.
+                Please not that it is janky and probably wont work most of the time, but it is free and a great way to practice for you debates.
+                Please know that you are using the cite at your own risk and are agreeing by signing up to take responsibility for anything that 
+                may happen while using the cite. If you feel uncomfortable while video calling anyone you are responsible for leaving that page 
+                immediately, and please let us know the user name and we will review the profile. The number to text for that is in the discussion prompts.
+            </p></div>
             </div>
         </div>
      ); 
