@@ -85,7 +85,9 @@ const Register = () => {
                      
                      
                      
-            <div><p style={{maxWidth:'400px'}}><strong>DISCLAIMER</strong>
+            <div>
+                <strong>DISCLAIMER:</strong><br />
+                <p style={{maxWidth:'400px'}}>
                 By signing and making an account you are agreeing to participate in an early Alpha of the product.
                 Please not that it is janky and probably wont work most of the time, but it is free and a great way to practice for you debates.
                 Please know that you are using the cite at your own risk and are agreeing by signing up to take responsibility for anything that 
