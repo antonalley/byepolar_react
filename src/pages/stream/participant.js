@@ -175,6 +175,19 @@ const Participant = () => {
     return ( 
         <>
             {/* <button onClick={()=>setupStream()}>Start Session</button> */}
+            <div>
+                <span style={{color:'red'}}>Warning: Early stages of development</span>
+                <p>Just leave the page when done discussing.</p><br />
+                <p>This is a very early version of our site meant to help people to debate in a manner that removes contention and leads to truth.</p><br />
+                <p>
+                    The final product will allow you to rate eachother on your:
+                    <strong>Charisma, Logic, Sportsmanship, and Sources</strong>
+                </p><br />
+                <p>
+                    please while debating focus on having these things and feel free to rate yourself in order to help you improve. 
+                    If you run into any problems, or have any feedback for the cite please text (667) 777 - 3347
+                </p><br />
+            </div>
             <div id={styles.videos_container}>
                 <div id={styles.video_left_container} className={styles.video}>
                     <video id="local-video" ref={localVideoRef} muted autoPlay></video>
