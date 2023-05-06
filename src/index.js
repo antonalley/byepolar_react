@@ -16,6 +16,7 @@ import Register from './pages/auth/register';
 import Join from './pages/stream/join';
 import Participant from './pages/stream/participant';
 import { AppContextProvider } from './hooks/context';
+import LiveStream from './pages/stream/participant_node';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,6 +36,7 @@ root.render(
               <Route path='/stream' >
                 <Route path='join' element={<Join />}></Route>
                 <Route path='participant' element={<Participant />}></Route>
+                <Route path='livestreamtest' element={<LiveStream />}></Route>
                 <Route path = "" element={<NotFound/>}></Route>
               </Route>
               <Route element={<NotFound/>}></Route>
