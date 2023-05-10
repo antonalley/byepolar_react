@@ -1,5 +1,5 @@
 import { db } from './fb_init';
-import {getDocs, getDoc, setDoc, where, query, limit, orderBy, updateDoc, arrayUnion, collection, Timestamp, arrayRemove} from 'firebase/firestore'
+import {getDocs, getDoc, setDoc, where, query, limit, orderBy, updateDoc, arrayUnion, arrayRemove, collection, Timestamp} from 'firebase/firestore'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { uuidv4 } from '@firebase/util';
 
@@ -120,6 +120,32 @@ export async function joinDiscussionQueue(prompt_id, position, uid) {
         console.log("Error Joining the Discussion queue", error)
         throw error;
     }
+}
+
+/**
+ * Leave the discussion queue
+ * @param {uuid} prompt_id 
+ * @param {'agreeing'|'opposing'} position 
+ * @param {uuid} uid 
+ * @returns 
+ */
+export async function leaveDiscussionQueue(prompt_id, position, uid){
+    if (prompt_id === null | position === null | uid === null){
+        throw Error("Missing a paramater")
+    }
+
+    let q = doc(db, "Prompts", prompt_id)
+
+    if (position === "opposing"){
+        await updateDoc(q, {
+            opposing_queue: arrayRemove(uid)
+        })
+    } else {
+        await updateDoc(q, {
+            agreeing_queue: arrayRemove(uid)
+        })
+    }
+    return true;
 }
 
 /**

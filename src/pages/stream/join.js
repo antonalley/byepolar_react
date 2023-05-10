@@ -1,5 +1,5 @@
-import { joinDiscussionQueue } from "../../functions/controllers";
-import React, { useState, useContext } from "react";
+import { joinDiscussionQueue, leaveDiscussionQueue } from "../../functions/controllers";
+import React, { useState, useContext, useEffect } from "react";
 import styles from '../../styles/Join.module.css'
 import { AppContext } from "../../hooks/context";
 
@@ -34,6 +34,26 @@ const Join = () => {
         // perform oppose action here
         chooseSide('opposing')
     };
+
+    
+        
+    useEffect(() => {
+        const handleBeforeUnload = async (e) => {
+            try {
+                const queryParams = new URLSearchParams(window.location.search);
+                const prompt_id = queryParams.get('prompt_id');
+                await leaveDiscussionQueue(prompt_id, isAgreeing ? 'agreeing' : 'opposing' , userDetail.id);
+            } catch (error) {
+                console.log('Error leaving queue:', error);
+            }
+        }
+        
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [isAgreeing, userDetail])
       
     return (
         <div>
@@ -48,7 +68,7 @@ const Join = () => {
                 <button
                     className="btn btn-primary"
                     onClick={handleAgreeClick}
-                    disabled={isAgreeing || isOpposing}
+                    disabled={isAgreeing || isOpposing || userDetail === null}
                 >
                     {isAgreeing ? (
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -59,7 +79,7 @@ const Join = () => {
                 <button
                     className="btn btn-danger"
                     onClick={handleOpposeClick}
-                    disabled={isAgreeing || isOpposing}
+                    disabled={isAgreeing || isOpposing || userDetail === null}
                 >
                     {isOpposing ? (
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
