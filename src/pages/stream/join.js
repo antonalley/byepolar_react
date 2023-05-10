@@ -35,24 +35,25 @@ const Join = () => {
         chooseSide('opposing')
     };
 
-    const handleBeforeUnload = async (e) => {
-        try {
-            const queryParams = new URLSearchParams(window.location.search);
-            const prompt_id = queryParams.get('prompt_id');
-            await leaveDiscussionQueue(prompt_id, isAgreeing ? 'agreeing' : 'opposing' , userDetail.id);
-        } catch (error) {
-            console.log('Error leaving queue:', error);
-        }
-    }
+    
         
     useEffect(() => {
+        const handleBeforeUnload = async (e) => {
+            try {
+                const queryParams = new URLSearchParams(window.location.search);
+                const prompt_id = queryParams.get('prompt_id');
+                await leaveDiscussionQueue(prompt_id, isAgreeing ? 'agreeing' : 'opposing' , userDetail.id);
+            } catch (error) {
+                console.log('Error leaving queue:', error);
+            }
+        }
         
         window.addEventListener('beforeunload', handleBeforeUnload);
 
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
-    }, [handleBeforeUnload])
+    }, [isAgreeing, userDetail])
       
     return (
         <div>
