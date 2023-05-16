@@ -151,7 +151,7 @@ const LiveStream = () => {
                 />
             <button onClick={startPublishing}>Start publishing</button>
             <button onClick={startWatching}>Start watching</button>
-            <video ref={videoRef} autoPlay />
+            <video ref={videoRef} autoPlay  crossOrigin="anonymous"/>
         </div>
     );
 };
