@@ -42,7 +42,7 @@ export default function Home() {
                   <>
                   <span>{featured.agreeing} vs {featured.opposing}</span>
                   <span>{featured.num_viewers} watching</span>
-                  <button className={`${styles.watch_live_button} btn btn-outline-primary`}>Watch Live</button>
+                  <button className={`${styles.watch_live_button} btn btn-outline-primary`} disabled>Watch Live</button>
                   </>
                 }
                 </div> 
@@ -57,9 +57,9 @@ export default function Home() {
                         <span className={styles.promptName}>{prompt.prompt}</span>
                         &nbsp;
                         <div>
-                          <a href="/ongoing">
-                            <button className='btn btn-outline-primary'>Watch Live with {prompt.total_viewers} others</button>
-                          </a>
+                          {/* <a href="/ongoing"> */}
+                            {/* <button className='btn btn-outline-primary'>Watch Live with {prompt.total_viewers} others</button> */}
+                          {/* </a> */}
                           &nbsp;
                           <a href={`/stream/join/?prompt_id=${prompt.id}`}>
                             <button className='btn btn-outline-primary'>Join the Discussion</button>
