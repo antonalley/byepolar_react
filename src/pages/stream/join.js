@@ -73,7 +73,7 @@ const Join = () => {
                     {isAgreeing ? (
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     ) : (
-                    "Agree"
+                    "Democrat"
                     )}
                 </button>
                 <button
@@ -84,7 +84,7 @@ const Join = () => {
                     {isOpposing ? (
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     ) : (
-                    "Oppose"
+                    "Republican"
                     )}
                 </button>
                 </div>
